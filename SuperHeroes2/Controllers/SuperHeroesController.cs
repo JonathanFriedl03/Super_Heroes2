@@ -10,7 +10,12 @@ namespace SuperHeroes2.Controllers
 {
     public class SuperHeroesController : Controller
     {
-      
+        private readonly ApplicationDbContext _db;
+
+        public SuperHeroesController(ApplicationDbContext db)
+        {
+            _db = db;
+        }
         // GET: SuperHeroes
         public ActionResult Index()
         {

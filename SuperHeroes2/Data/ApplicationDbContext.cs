@@ -13,6 +13,7 @@ namespace SuperHeroes2.Data
             : base(options)
         {
         }
-        
+        public DbSet<SuperHero> SuperHeroes { get; set; }
+
     }
 }
