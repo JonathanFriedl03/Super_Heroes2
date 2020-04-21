@@ -45,6 +45,6 @@
 </div>
 <div>
     <input type="hidden" asp-for="Id" />
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn bg-success btn-sm text-black-50">Edit</a>|
     <a asp-action="Index">Back to List</a>
 </div>
