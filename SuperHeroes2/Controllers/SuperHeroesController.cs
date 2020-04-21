@@ -59,18 +59,25 @@ namespace SuperHeroes2.Controllers
         // GET: SuperHeroes/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            SuperHero superHero = _db.SuperHeroes.Where(q => q.Id == id).FirstOrDefault();
+            return View(superHero);
         }
 
         // POST: SuperHeroes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, SuperHero superHero)
         {
             try
             {
                 // TODO: Add update logic here
-
+                SuperHero hero2Update = _db.SuperHeroes.Where(q => q.Id == id).FirstOrDefault();
+                hero2Update.Name = superHero.Name;
+                hero2Update.AlterEgo = superHero.AlterEgo;
+                hero2Update.MainPower = superHero.MainPower;
+                hero2Update.SecondaryPower = superHero.SecondaryPower;
+                hero2Update.CatchPhrase = superHero.CatchPhrase;
+                _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -82,7 +89,8 @@ namespace SuperHeroes2.Controllers
         // GET: SuperHeroes/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            SuperHero super = _db.SuperHeroes.Where(q => q.Id == id).FirstOrDefault();
+            return View(super);
         }
 
         // POST: SuperHeroes/Delete/5
