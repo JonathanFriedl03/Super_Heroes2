@@ -21,6 +21,7 @@ namespace SuperHeroes2.Controllers
         public ActionResult Index()
         {
             var superHeroes = _db.SuperHeroes.ToList();
+
             return View(superHeroes);
         }
 
@@ -96,12 +97,14 @@ namespace SuperHeroes2.Controllers
         // POST: SuperHeroes/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, SuperHero super)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                var superHero = _db.SuperHeroes.Where(q => q.Id == id).FirstOrDefault();
+                _db.Remove(superHero);
+                _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
